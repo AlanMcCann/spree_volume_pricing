@@ -1,38 +1,17 @@
 source 'http://rubygems.org'
 
 # temporarily needed until next capybara release
-gem 'selenium-webdriver', '0.2.1'
+gem 'sqlite3'
 
 group :test do
-  gem 'rspec-rails', '= 2.6.1'
-  gem 'factory_girl', '= 1.3.3'
-  gem 'factory_girl_rails', '= 1.0.1'
-  gem 'rcov'
-  gem 'shoulda'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'faker'
-  if RUBY_VERSION < "1.9"
-    gem "ruby-debug"
-  else
-    gem "ruby-debug19"
-  end
+  gem 'shoulda-matchers'
 end
 
-group :cucumber do
-  gem 'cucumber-rails'
-  gem 'database_cleaner', '= 0.6.7'
-  gem 'nokogiri', '1.4.4'
-  gem 'capybara', '= 1.0.0'
-  gem 'factory_girl', '= 1.3.3'
-  gem 'factory_girl_rails', '= 1.0.1'
-  gem 'faker'
-  gem 'launchy'
+gemspec
 
-  if RUBY_VERSION < "1.9"
-    gem "ruby-debug"
-  else
-    gem "ruby-debug19"
-  end
-end
+# Use spree master until 0.80
+gem 'spree', :git => 'git://github.com/spree/spree'
 
-gem 'spree', :git => 'git://github.com/spree/spree.git'
-gem 'spree_volume_pricing', :git => 'git://github.com/spree/spree_volume_pricing.git'

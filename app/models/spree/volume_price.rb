@@ -1,17 +1,14 @@
-class VolumePrice < ActiveRecord::Base
+class Spree::VolumePrice < ActiveRecord::Base
   belongs_to :variant
   acts_as_list :scope => :variant
+
+  validates :range, :format => {:with => /\([0-9]+(?:\.{2,3}[0-9]+|\+\))/, :message => "must be in one of the following formats: (a..b), (a...b), (a+)"}
   validates_presence_of :variant
   validates_presence_of :amount
   validates_presence_of :discount_type
   validates :discount_type, :inclusion => {:in => %w(price dollar percent), :message => "%{value} is not a valid Volume Price Type"}
   
   OPEN_ENDED = /\([0-9]+\+\)/
-  
-  def validate
-    return if open_ended?
-    errors.add(:range, "must be in one of the following formats: (a..b), (a...b), (a+)") unless /\([0-9]+\.{2,3}[0-9]+\)/ =~ range
-  end
   
   def include?(quantity)
     if open_ended?
