@@ -9,7 +9,7 @@ Variant.class_eval do
       return self.price
       puts "no volume prices - return #{self.price}"
     else
-      puts "foun volume prices"
+      puts "found volume prices"
       self.volume_prices.each do |price|
         if price.include?(quantity)
           case price.discount_type
